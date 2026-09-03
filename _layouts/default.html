@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- 블로그 제목과 설명 -->
+        <h1><a href="{{ '/' | relative_url }}">Octocat's homepage</a></h1>
+        <p>Bookmark this to keep an eye on my project updates!</p>
+
+        <!-- 🌟 여기에 커스텀 메뉴를 추가합니다 🌟 -->
+        <hr>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
+          <li>👉 <a href="{{ '/' | relative_url }}">홈 (Home)</a></li>
+          <li>👉 <a href="{{ '/about/' | relative_url }}">소개 (About Me)</a></li>
+        </ul>
+        <hr>
+
+        <p class="view"><a href="https://github.com/p0ing">View My GitHub Profile</a></p>
+      </header>
+      
+      <section>
+        <!-- 마크다운으로 작성한 내용이 들어가는 자리 -->
+        {{ content }}
+      </section>
+      
+      <footer>
+        <p><small>Hosted on GitHub Pages</small></p>
+      </footer>
+    </div>
+  </body>
+</html>
