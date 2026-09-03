@@ -5,19 +5,56 @@
     <title>{{ page.title }} | {{ site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <!-- 메뉴 스타일 (원하는 대로 수정 가능) -->
+    <style>
+      .sidebar-menu { list-style: none; padding-left: 0; line-height: 1.6; }
+      .sidebar-menu > li { margin-bottom: 12px; font-weight: bold; font-size: 1.1em; }
+      .sidebar-sub { list-style: circle; padding-left: 20px; font-weight: normal; font-size: 0.85em; margin-top: 5px; }
+      .sidebar-sub > li { margin-bottom: 4px; }
+      .sidebar-sub a { color: #555; text-decoration: none; }
+      .sidebar-sub a:hover { text-decoration: underline; }
+    </style>
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <!-- 블로그 제목과 설명 -->
         <h1><a href="{{ '/' | relative_url }}">Octocat's homepage</a></h1>
         <p>Bookmark this to keep an eye on my project updates!</p>
-
-        <!-- 🌟 여기에 커스텀 메뉴를 추가합니다 🌟 -->
         <hr>
-        <ul style="list-style: none; padding-left: 0; line-height: 1.8;">
-          <li>👉 <a href="{{ '/' | relative_url }}">홈 (Home)</a></li>
-          <li>👉 <a href="{{ '/about/' | relative_url }}">소개 (About Me)</a></li>
+
+        <!-- 🌟 새롭게 구성된 목차 메뉴 🌟 -->
+        <ul class="sidebar-menu">
+          <li>🏠 <a href="{{ '/' | relative_url }}">홈</a></li>
+          <li>🙋‍♂️ <a href="{{ '/about/' | relative_url }}">소개</a></li>
+          
+          <!-- 주제 1 -->
+          <li>📁 <a href="{{ '/topic1/' | relative_url }}">주제1</a>
+            <ul class="sidebar-sub">
+              <!-- limit:5 를 통해 카테고리가 '주제1'인 글을 최신순으로 5개만 가져옵니다 -->
+              {% for post in site.categories["주제1"] limit:5 %}
+                <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          <!-- 주제 2 -->
+          <li>📁 <a href="{{ '/topic2/' | relative_url }}">주제2</a>
+            <ul class="sidebar-sub">
+              {% for post in site.categories["주제2"] limit:5 %}
+                <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          <!-- 주제 3 -->
+          <li>📁 <a href="{{ '/topic3/' | relative_url }}">주제3</a>
+            <ul class="sidebar-sub">
+              {% for post in site.categories["주제3"] limit:5 %}
+                <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
         </ul>
         <hr>
 
@@ -25,7 +62,6 @@
       </header>
       
       <section>
-        <!-- 마크다운으로 작성한 내용이 들어가는 자리 -->
         {{ content }}
       </section>
       
